@@ -1,11 +1,7 @@
 <template>
-    <Layout>Contact</Layout>
+  <Layout>Contact</Layout>
+</template>
 
-tyutyu
-    </template>
-    
-    <script setup>
-    import Layout  from '../layouts/Layout.vue'
-    
-    </script>
-    
+<script setup>
+import Layout from "../layouts/Layout.vue";
+</script>
