@@ -3,6 +3,7 @@
     <div class="px-12 py-8">
       <a href="/" class="text-lg font-medium">Logo</a>
     </div>
+    
     <div class="md:flex-row md:flex">
       <div class="p-6 md:ml-56 md:w-2/6 mt-14">
         
@@ -85,6 +86,6 @@
 
 <script setup>
 import SignupUserStep1 from "./SignupUserStep1.vue";
-import { useRegisterUser } from "@/stores/RegisterUserStore";
+import { useRegisterUser } from "@/stores/RegisterUserStore.js";
 const RegisterUser = useRegisterUser();
 </script>

@@ -12,7 +12,7 @@ const dashboardRoute = [{
     },
     {
         path: '/dashboard/contact',
-        name: 'Contact',
+        name: 'dashboard.contact',
         meta: {
             requiresAuth: true
         },

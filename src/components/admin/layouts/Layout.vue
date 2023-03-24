@@ -1,8 +1,12 @@
 <template>
   <Header />
+
+  <div class="m-4">
   <slot>
     
   </slot>
+
+  </div>
 
   <Footer />
   <router-view></router-view>
