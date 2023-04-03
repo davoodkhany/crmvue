@@ -1,4 +1,4 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@include './css/all.css';
+@include './fontiran.css';
