@@ -8,9 +8,9 @@
       </div>
     </header>
     <main>
-      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="mx-auto mt-10 max-w-7xl sm:px-6 lg:px-8">
         <!-- Replace with your content -->
-        <div class="px-4 py-8 sm:px-0">
+        <div class="p-4  bg-[#f3f4f6] rounded-md mt-3 ">
           <slot> </slot>
         </div>
         <!-- /End replace -->

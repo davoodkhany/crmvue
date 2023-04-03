@@ -12,7 +12,6 @@ import 'maz-ui/css/main.css'
 import './assets/css/main.css'
 import './assets/fontawesome/js/all.js'
 
-
 const app = createApp(App)
 
 app.use(createPinia())
