@@ -4,7 +4,7 @@
         <h2 class="text-2xl font-bold leading-tight tracking-tight text-gray-900">اشخاص</h2>  
     </template>
      
-
+<div class="p-4 bg-[#f3f4f6] rounded-md mt-3 ">
   <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
     <li v-for="person in people" :key="person.email" class="flex flex-col col-span-1 text-center bg-white divide-y divide-gray-200 rounded-lg shadow">
       <div class="flex flex-col flex-1 p-8">
@@ -37,6 +37,7 @@
       </div>
     </li>
   </ul>
+</div>
   </Layout>
 </template>
 

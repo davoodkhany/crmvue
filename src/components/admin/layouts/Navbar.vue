@@ -158,6 +158,7 @@
       <DisclosurePanel class="sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
           <DisclosureButton
+        
             v-for="item in navigation"
             :key="item.name"
             as="a"
@@ -230,7 +231,7 @@ const user = {
   imageUrl: "../src/assets/img/signup.png",
 };
 const navigation = [
-   { name: "معاملات", href: "/dashboard/trades", current: false },
+   { name: "معاملات", href: "/dashboard/trades", current: true },
   { name: "فعالیت‌ها", href: "/dashboard/activities", current: false },
   { name: "کارت‌ها", href: "/dashboard/cards", current: false },
   { name: "یادداشت‌ها", href: "/dashboard/notes", current: false },
@@ -244,6 +245,6 @@ const userNavigation = [
 
 const ContactNavigating = [
   {name: "اشخاص", path: "/dashboard/contact" , current:true},
-  {name:'شرکت‌ها', path: '/dashboard/company'},
+  {name:'شرکت‌ها', path: '/dashboard/company' , current:true},
 ];
 </script>
