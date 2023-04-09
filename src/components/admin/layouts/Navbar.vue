@@ -120,7 +120,7 @@
                 <MenuItems
                   class="absolute z-10 w-48 py-1 mt-2 -mr-20 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                 >
-                  <MenuItem
+                         <MenuItem
                     v-for="item in userNavigation"
                     :key="item.name"
                     v-slot="{ active }"

@@ -39,7 +39,6 @@ export const router = createRouter({
 
             }]
         },
-
         {
             path: '/:pathMatch(.*)*',
             component: NotFound
@@ -53,42 +52,42 @@ export const router = createRouter({
 
 
 
-// router.beforeEach(async(to, from, next) => {
-//     const token = localStorage.getItem('token')
-//     let isAuthenticated;
-//     try {
-//         const res = await axios.get("/user", {
-//             headers: {
-//                 Authorization: `Bearer ${token}`,
-//                 token: token,
-//             },
-//         });
+router.beforeEach(async(to, from, next) => {
+    const token = localStorage.getItem('token')
+    let isAuthenticated;
+    try {
+        const res = await axios.get("/user", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                token: token,
+            },
+        });
 
-//         let status = res.status
-//         isAuthenticated = true;
+        let status = res.status
+        isAuthenticated = true;
 
-//     } catch (err) {
-//         isAuthenticated = false
-//     }
+    } catch (err) {
+        isAuthenticated = false
+    }
 
-//     const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-//     if (requiresAuth) {
-//         if (!isAuthenticated) {
-//             next({
-//                 path: '/Signup',
-//                 params: { nextUrl: to.fullPath },
-//             })
-//         } else {
-//             next()
-//         }
-//     } else if (to.matched.some(record => record.meta.guest)) {
-//         if (isAuthenticated == false) {
-//             next()
+    const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
+    if (requiresAuth) {
+        if (!isAuthenticated) {
+            next({
+                path: '/Signup',
+                params: { nextUrl: to.fullPath },
+            })
+        } else {
+            next()
+        }
+    } else if (to.matched.some(record => record.meta.guest)) {
+        if (isAuthenticated == false) {
+            next()
 
-//         } else {
-//             next({ name: 'Dashboard' })
-//         }
-//     } else {
-//         next()
-//     }
-// });
+        } else {
+            next({ name: 'Dashboard' })
+        }
+    } else {
+        next()
+    }
+});

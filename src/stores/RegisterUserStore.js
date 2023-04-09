@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from '@/plugins/axios';
+import Axios from 'axios'
 import { router } from '@/router/index';
 
 export const useRegisterUser = defineStore({
@@ -34,19 +35,21 @@ export const useRegisterUser = defineStore({
                 mobile: this.mobile,
                 company: this.company,
             }
-            axios
-                .post("/signup", formData)
-                .then((res) => {
-                    localStorage.setItem('token', res.data.token);
-                    router.push({ name: 'Dashboard' })
-                    this.status = res.status;
-                    this.id = res.data.id;
-                })
-                .catch((err) => {
-                    this.errors = err.response.data.errors
+            async() => Axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
+                async() => axios
+                    .post("/signup", formData)
+                    .then((res) => {
+                        localStorage.setItem('token', res.data.token);
+                        router.push({ name: 'Dashboard' })
+                        this.status = res.status;
+                        this.id = res.data.id;
+                    })
+                    .catch((err) => {
+                        this.errors = err.response.data.errors
 
-                })
-        },
+                    })
+            }, )
+        }
         // Verify Mobile Button Click
         // PhoneVerify() {
         //     const formData = {

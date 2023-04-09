@@ -17,7 +17,8 @@ const dashboardRoute = [{
             requiresAuth: true
         },
         component: Contact,
-    }
+    },
+
 
 ]
 export default dashboardRoute
