@@ -16,13 +16,13 @@ export const useRegisterUser = defineStore({
         errors: '',
         step: '',
         results: '',
+        user: '',
     }),
     actions: {
 
         nextSignup() {
             this.step = true
             router.push({ name: 'step-1' })
-
         },
 
         //Register User  

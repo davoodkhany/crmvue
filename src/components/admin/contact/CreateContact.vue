@@ -1,6 +1,6 @@
 <template>
-  <button
-    type="button"
+  <button 
+    type="button" 
     @click="open = true"
     class="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
   >
@@ -53,7 +53,7 @@
                   <div class="mb-4">
                     <label
                       for="family"
-                      class="flex text-sm font-medium text-gray-900 dark:text-white"
+                      class="flex mb-1 text-sm font-medium text-gray-900 dark:text-white"
                       >نام خانوادگی</label
                     >
                     <input
@@ -66,7 +66,7 @@
                   <div class="mb-4">
                     <label
                       for="email"
-                      class="flex text-sm font-medium text-gray-900 dark:text-white"
+                      class="flex mb-1 text-sm font-medium text-gray-900 dark:text-white"
                       >ایمیل</label
                     >
                     <input
@@ -80,32 +80,38 @@
                   <div class="mb-4">
                     <label
                       for="mobile"
-                      class="flex text-sm font-medium text-gray-900 dark:text-white"
+                      class="flex mb-1 text-sm font-medium text-gray-900 dark:text-white"
                       >موبایل</label
                     >
                     <input
                       type="text"
                       id="mobile"
-                      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                      class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
                   </div>
+
                   <div class="mb-4">
                     <label
                       for="responsible"
-                      class="flex text-sm font-medium text-gray-900 dark:text-white"
+                      class="flex mb-1 text-sm font-medium text-gray-900 dark:text-white"
                       >مسئول</label
                     >
-                    <input
-                      type="text"
+                    <select
                       id="responsible"
-                      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                      required
-                    />
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    >
+                      <option>United States</option>
+                      <option>Canada</option>
+                      <option>France</option>
+                      <option>Germany</option>
+                    </select>
                   </div>
-           
-                  <div class="flex justify-between mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
-                    <button 
+
+                  <div
+                    class="flex justify-between mt-5 sm:mt-4 sm:flex sm:flex-row-reverse"
+                  >
+                    <button
                       type="submit"
                       class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
@@ -130,6 +136,7 @@
 </template>
 
 <script setup>
+import { useContactStore } from '@/stores/ContactStore.js'
 
 import { ref } from "vue";
 
@@ -143,5 +150,12 @@ import {
 
 import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
+const ContactStore = useContactStore();
+
 const open = ref(false);
+
+// if (open){
+//   console.log();
+// }
+
 </script>
