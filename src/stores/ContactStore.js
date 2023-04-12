@@ -11,27 +11,25 @@ export const useContactStore = defineStore({
         family: '',
         email: '',
         mobile: '',
-        responible: '',
+        responsible: '',
         errors: '',
-        responibles: {}
+        responsibles: '',
     }),
 
-
     getters: {
-        responibleGet() {
+        async responsibleGet() {
             const getUser = useRegisterUser();
             axios.post('/get-user-responible', { 'user': getUser.user })
                 .then((res) => {
-                    console.log(res);
+                    this.responsibles = res.data.users
                 })
-                .catch((err) => {})
+                .catch((err) => {
+                    console.log('EROOR');
+                })
         },
     },
 
     actions: {
-
-
-
         createContact() {
             const formData = {
                 name: this.name,

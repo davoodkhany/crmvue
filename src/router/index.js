@@ -59,7 +59,8 @@ router.beforeEach(async(to, from, next) => {
         // Save globaly user login id or email ...
         const userSave = useRegisterUser();
         userSave.user = res.data.user
-            // 
+
+        // 
 
         let status = res.status
         isAuthenticated = true;

@@ -77,9 +77,14 @@
 
 
 
+
 import Layout from "../layouts/Layout.vue";
 
 import CreateContact from "./CreateContact.vue"
+
+
+
+
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/vue/20/solid";
 const people = [
   {

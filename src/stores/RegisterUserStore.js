@@ -35,20 +35,21 @@ export const useRegisterUser = defineStore({
                 mobile: this.mobile,
                 company: this.company,
             }
-            async() => Axios.get('http://localhost:8000/sanctum/csrf-cookie').then(response => {
-                async() => axios
-                    .post("/signup", formData)
-                    .then((res) => {
-                        localStorage.setItem('token', res.data.token);
-                        router.push({ name: 'Dashboard' })
-                        this.status = res.status;
-                        this.id = res.data.id;
-                    })
-                    .catch((err) => {
-                        this.errors = err.response.data.errors
 
-                    })
-            }, )
+            axios
+                .post("/signup", formData)
+                .then((res) => {
+                    localStorage.setItem('token', res.data.token);
+                    router.push({ name: 'Dashboard' })
+                    this.status = res.status;
+                    this.id = res.data.id;
+                })
+                .catch((err) => {
+                    this.errors = err.response.data.errors
+
+                })
+
+
         }
         // Verify Mobile Button Click
         // PhoneVerify() {
