@@ -70,7 +70,7 @@ const open = ref(false);
                 </button>
               </div>
               <div class="mt-6">
-                <form @submit.prevent="">
+                <form @submit.prevent="ContactStore.createContact">
                   <div class="mb-4">
                     <label
                       for="name"
@@ -79,6 +79,7 @@ const open = ref(false);
                     >
                     <input
                       type="text"
+                      v-model="ContactStore.name"
                       id="name"
                       class="block w-full p-1.5 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
@@ -93,6 +94,7 @@ const open = ref(false);
                     <input
                       type="text"
                       id="family"
+                      v-model="ContactStore.family"
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
@@ -106,6 +108,7 @@ const open = ref(false);
                     <input
                       type="email"
                       id="email"
+                      v-model="ContactStore.email"
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
@@ -120,6 +123,7 @@ const open = ref(false);
                     <input
                       type="text"
                       id="mobile"
+                      v-model="ContactStore.mobile"
                       class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
@@ -133,9 +137,10 @@ const open = ref(false);
                     >
                     <select 
                       id="responsible"
+                      v-model="ContactStore.responsible"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                      <option v-for="contact in ContactStore.responsibles" :key="contact.id" value="{{ contact.id }}">{{ contact.name }}</option>
+                      <option v-for="contact in ContactStore.responsibles" :key="contact.id" :value=" contact.id">{{ contact.name }}</option>
                     </select>
                   </div>
 
@@ -146,14 +151,14 @@ const open = ref(false);
                       type="submit"
                       class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
-                      Deactivate
+                      ارسال
                     </button>
                     <button
                       type="button"
                       class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm"
                       @click="open = false"
                     >
-                      Cancel
+                      لغو
                     </button>
                   </div>
                 </form>

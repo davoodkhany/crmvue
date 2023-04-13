@@ -24,13 +24,15 @@ export const useContactStore = defineStore({
                     this.responsibles = res.data.users
                 })
                 .catch((err) => {
-                    console.log('EROOR');
+                    console.log('error');
                 })
         },
     },
 
     actions: {
+
         createContact() {
+            const getUser = useRegisterUser();
             const formData = {
                 name: this.name,
                 family: this.family,
@@ -38,7 +40,15 @@ export const useContactStore = defineStore({
                 mobile: this.mobile,
                 responible: this.responible,
                 token: this.token,
+                user: getUser.user
             }
+
+            axios.post('/contact', formData)
+                .then((res) => {
+
+                    console.log(res);
+                })
+                .catch((err) = {})
         }
     }
 })
