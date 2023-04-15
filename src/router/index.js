@@ -60,8 +60,6 @@ router.beforeEach(async(to, from, next) => {
         const userSave = useRegisterUser();
         userSave.user = res.data.user
 
-        // 
-
         let status = res.status
         isAuthenticated = true;
 

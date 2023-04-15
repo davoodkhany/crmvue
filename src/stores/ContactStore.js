@@ -13,42 +13,47 @@ export const useContactStore = defineStore({
         mobile: '',
         responsible: '',
         errors: '',
-        responsibles: '',
+        liable: [],
     }),
 
     getters: {
-        async responsibleGet() {
+        async responibleGet() {
             const getUser = useRegisterUser();
             axios.post('/get-user-responible', { 'user': getUser.user })
                 .then((res) => {
-                    this.responsibles = res.data.users
+
+                    this.liable = res.data.users
+
+                    // this.responibles = res.data.users
                 })
                 .catch((err) => {
-                    console.log('error');
+                    console.log('EROOR');
                 })
         },
     },
 
-    actions: {
 
+    actions: {
         createContact() {
-            const getUser = useRegisterUser();
             const formData = {
                 name: this.name,
                 family: this.family,
                 email: this.email,
                 mobile: this.mobile,
-                responible: this.responible,
+                responsible: this.responsible,
                 token: this.token,
-                user: getUser.user
             }
 
             axios.post('/contact', formData)
                 .then((res) => {
-
                     console.log(res);
                 })
-                .catch((err) = {})
+
+            .catch((err) => {
+                console.log(err);
+            })
+
+
         }
     }
 })

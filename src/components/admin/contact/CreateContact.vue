@@ -14,19 +14,13 @@ import {
 
 import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
-const ContactStore = useContactStore();
+
 
 const open = ref(false);
 
+const ContactStore = useContactStore();
 
-
-
-   
-
-
-
-
-
+  
 </script>
 
 
@@ -140,7 +134,7 @@ const open = ref(false);
                       v-model="ContactStore.responsible"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                      <option v-for="contact in ContactStore.responsibles" :key="contact.id" :value=" contact.id">{{ contact.name }}</option>
+                      <option v-for="contact in ContactStore.liable" :key="contact.id" :value=" contact.id" >{{ contact.name }}</option>
                     </select>
                   </div>
 

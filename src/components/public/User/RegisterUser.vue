@@ -115,8 +115,6 @@ v-if="RegisterUser.status != 200"
 
 <script setup>
 
-
-
 import {useRegisterUser} from '@/stores/RegisterUserStore'
 
 const RegisterUser = useRegisterUser();
