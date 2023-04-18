@@ -1,5 +1,5 @@
 <script setup>
-
+import AlertSuccess from '../../attribute/AlertSuccess.vue'
 import { useContactStore } from '@/stores/ContactStore.js'
 
 import { ref, computed } from "vue";
@@ -16,9 +16,10 @@ import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 
 
-const open = ref(false);
+let open = ref(false);
 
 const ContactStore = useContactStore();
+
 
   
 </script>
@@ -37,7 +38,7 @@ const ContactStore = useContactStore();
 
   <TransitionRoot as="template" :show="open">
     <Dialog as="div" class="relative z-10" @close="open = true">
-      <div class="fixed inset-0 z-10 overflow-y-auto">
+      <div class="fixed inset-0 z-10 overflow-y-auto" :class="ContactStore.status ? 'hidden' : ''">
         <div
           class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0"
         >
@@ -57,7 +58,7 @@ const ContactStore = useContactStore();
                 <button
                   type="button"
                   class="text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  @click="open = false"
+                  @click="(open = false) && (ContactStore.status =='')"
                 >
                   <span class="sr-only">Close</span>
                   <XMarkIcon class="w-6 h-6" aria-hidden="true" />
@@ -78,6 +79,9 @@ const ContactStore = useContactStore();
                       class="block w-full p-1.5 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
+                 <span class="text-red-500" v-if="ContactStore.errors.name">{{
+            ContactStore.errors.name[0]
+          }}</span> 
                   </div>
                   <div class="mb-4">
                     <label
@@ -92,6 +96,9 @@ const ContactStore = useContactStore();
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
+                                         <span class="text-red-500" v-if="ContactStore.errors.family">{{
+            ContactStore.errors.family[0]
+          }}</span> 
                   </div>
                   <div class="mb-4">
                     <label
@@ -106,6 +113,9 @@ const ContactStore = useContactStore();
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
+                     <span class="text-red-500" v-if="ContactStore.errors.email">{{
+            ContactStore.errors.email[0]
+          }}</span> 
                   </div>
 
                   <div class="mb-4">
@@ -121,6 +131,9 @@ const ContactStore = useContactStore();
                       class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
+                                         <span class="text-red-500" v-if="ContactStore.errors.mobile">{{
+            ContactStore.errors.mobile[0]
+          }}</span> 
                   </div>
 
                   <div class="mb-4">
@@ -136,12 +149,16 @@ const ContactStore = useContactStore();
                     >
                       <option v-for="contact in ContactStore.liable" :key="contact.id" :value=" contact.id" >{{ contact.name }}</option>
                     </select>
+                                                             <span class="text-red-500" v-if="ContactStore.errors.responsible">{{
+            ContactStore.errors.responsible[0]
+          }}</span> 
                   </div>
 
                   <div
                     class="flex justify-between mt-5 sm:mt-4 sm:flex sm:flex-row-reverse"
                   >
                     <button
+                      @click="open = ContactStore.status !==200 ? true : false"
                       type="submit"
                       class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
@@ -163,5 +180,8 @@ const ContactStore = useContactStore();
       </div>
     </Dialog>
   </TransitionRoot>
+
+<!-- <alert-success v-if="Co"></alert-success> -->
+
 </template>
 
