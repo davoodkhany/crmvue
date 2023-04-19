@@ -1,8 +1,7 @@
 <script setup>
-import AlertSuccess from '../../attribute/AlertSuccess.vue'
-import { useContactStore } from '@/stores/ContactStore.js'
-
-import { ref, computed } from "vue";
+import AlertSuccess from "../../attribute/AlertSuccess.vue";
+import { useContactStore } from "@/stores/ContactStore.js";
+import { ref, onUpdated, watch  } from "vue";
 
 import {
   Dialog,
@@ -14,31 +13,41 @@ import {
 
 import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
-
-
-let open = ref(false);
-
 const ContactStore = useContactStore();
+const isOpen = ref(false);
+
+function setIsOpen(value) {
+  isOpen.value = value;
+}
+
+let status = ContactStore.status;
 
 
-  
+
+watch(
+  () => ContactStore.status,
+  (newValue, oldValue) => {
+    if (newValue) {
+      setIsOpen(false);
+      console.log(isOpen.value);
+    }
+  }
+)
+
 </script>
 
-
-
 <template>
-
-  <button 
-    type="button" 
-    @click="open = true"
+  <button
+    type="button"
+    @click="isOpen = true"
     class="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
   >
     افزودن شخص
   </button>
 
-  <TransitionRoot as="template" :show="open">
-    <Dialog as="div" class="relative z-10" @close="open = true">
-      <div class="fixed inset-0 z-10 overflow-y-auto" :class="ContactStore.status ? 'hidden' : ''">
+  <TransitionRoot as="template" :show="isOpen">
+    <Dialog as="div" class="relative z-10" :open="isOpen" @close="setIsOpen">
+      <div class="fixed inset-0 z-10 overflow-y-auto">
         <div
           class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0"
         >
@@ -58,7 +67,7 @@ const ContactStore = useContactStore();
                 <button
                   type="button"
                   class="text-gray-400 bg-white rounded-md hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                  @click="(open = false) && (ContactStore.status =='')"
+                  @click="setIsOpen(false)"
                 >
                   <span class="sr-only">Close</span>
                   <XMarkIcon class="w-6 h-6" aria-hidden="true" />
@@ -79,9 +88,11 @@ const ContactStore = useContactStore();
                       class="block w-full p-1.5 text-sm text-gray-900 border border-gray-300 rounded-lg shadow-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
-                 <span class="text-red-500" v-if="ContactStore.errors.name">{{
-            ContactStore.errors.name[0]
-          }}</span> 
+                    <span
+                      class="text-red-500"
+                      v-if="ContactStore.errors.name"
+                      >{{ ContactStore.errors.name[0] }}</span
+                    >
                   </div>
                   <div class="mb-4">
                     <label
@@ -96,9 +107,11 @@ const ContactStore = useContactStore();
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
-                                         <span class="text-red-500" v-if="ContactStore.errors.family">{{
-            ContactStore.errors.family[0]
-          }}</span> 
+                    <span
+                      class="text-red-500"
+                      v-if="ContactStore.errors.family"
+                      >{{ ContactStore.errors.family[0] }}</span
+                    >
                   </div>
                   <div class="mb-4">
                     <label
@@ -113,9 +126,11 @@ const ContactStore = useContactStore();
                       class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
-                     <span class="text-red-500" v-if="ContactStore.errors.email">{{
-            ContactStore.errors.email[0]
-          }}</span> 
+                    <span
+                      class="text-red-500"
+                      v-if="ContactStore.errors.email"
+                      >{{ ContactStore.errors.email[0] }}</span
+                    >
                   </div>
 
                   <div class="mb-4">
@@ -128,12 +143,14 @@ const ContactStore = useContactStore();
                       type="text"
                       id="mobile"
                       v-model="ContactStore.mobile"
-                      class="shadow-sm  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-1.6 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                       required
                     />
-                                         <span class="text-red-500" v-if="ContactStore.errors.mobile">{{
-            ContactStore.errors.mobile[0]
-          }}</span> 
+                    <span
+                      class="text-red-500"
+                      v-if="ContactStore.errors.mobile"
+                      >{{ ContactStore.errors.mobile[0] }}</span
+                    >
                   </div>
 
                   <div class="mb-4">
@@ -142,23 +159,31 @@ const ContactStore = useContactStore();
                       class="flex mb-1 text-sm font-medium text-gray-900 dark:text-white"
                       >مسئول</label
                     >
-                    <select 
+                    <select
                       id="responsible"
                       v-model="ContactStore.responsible"
                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     >
-                      <option v-for="contact in ContactStore.liable" :key="contact.id" :value=" contact.id" >{{ contact.name }}</option>
+                      <option
+                        v-for="contact in ContactStore.liable"
+                        :key="contact.id"
+                        :value="contact.id"
+                      >
+                        {{ contact.name }}
+                      </option>
                     </select>
-                                                             <span class="text-red-500" v-if="ContactStore.errors.responsible">{{
-            ContactStore.errors.responsible[0]
-          }}</span> 
+                    <span
+                      class="text-red-500"
+                      v-if="ContactStore.errors.responsible"
+                      >{{ ContactStore.errors.responsible[0] }}</span
+                    >
                   </div>
 
                   <div
                     class="flex justify-between mt-5 sm:mt-4 sm:flex sm:flex-row-reverse"
                   >
                     <button
-                      @click="open = ContactStore.status !==200 ? true : false"
+                    
                       type="submit"
                       class="inline-flex justify-center w-full px-4 py-2 text-base font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                     >
@@ -167,7 +192,7 @@ const ContactStore = useContactStore();
                     <button
                       type="button"
                       class="inline-flex justify-center w-full px-4 py-2 mt-3 text-base font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm"
-                      @click="open = false"
+                      @click="setIsOpen(false)"
                     >
                       لغو
                     </button>
@@ -180,8 +205,4 @@ const ContactStore = useContactStore();
       </div>
     </Dialog>
   </TransitionRoot>
-
-<!-- <alert-success v-if="Co"></alert-success> -->
-
 </template>
-

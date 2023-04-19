@@ -81,6 +81,9 @@
 import Layout from "../layouts/Layout.vue";
 
 import CreateContact from "./CreateContact.vue"
+import { useContactStore } from "@/stores/ContactStore.js";
+const ContactStore = useContactStore();
+
 
 
 

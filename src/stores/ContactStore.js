@@ -14,7 +14,7 @@ export const useContactStore = defineStore({
         responsible: '',
         errors: '',
         liable: [],
-        status: '',
+        status: false,
         toast: false
     }),
 
@@ -25,15 +25,18 @@ export const useContactStore = defineStore({
                 .then((res) => {
 
                     this.liable = res.data.users
-
-                    // this.responibles = res.data.users
                 })
                 .catch((err) => {
                     console.log('EROOR');
                 })
         },
+
     },
     actions: {
+
+        ChangeStatus() {
+            this.status = false
+        },
 
         createContact() {
             const formData = {
@@ -49,23 +52,23 @@ export const useContactStore = defineStore({
             }
             axios.post('/contact', formData)
                 .then((res) => {
-                    this.status = res.status
-                    if (this.status == 200) {
+                    this.status = true
+
+                    if (this.status == true) {
                         setTimeout(() => {
                             this.name = '',
                                 this.family = '',
                                 this.email = '',
                                 this.mobile = '',
                                 this.responsible = '',
-                                this.errors = '',
-                                this.status = ''
-
-                        }, 2000)
+                                this.errors = ''
+                        }, 1000)
                     }
+
                 })
                 .catch((err) => {
                     this.errors = err.response.data.errors
-                    console.log(err);
+                    console.log(err.response.data.errors);
                 })
 
 
