@@ -16,6 +16,7 @@ export const useContactStore = defineStore({
         liable: [],
         status: false,
         toast: false
+
     }),
 
     getters: {
@@ -53,7 +54,7 @@ export const useContactStore = defineStore({
             axios.post('/contact', formData)
                 .then((res) => {
                     this.status = true
-
+                    this.toast = true
                     if (this.status == true) {
                         setTimeout(() => {
                             this.name = '',
@@ -68,7 +69,6 @@ export const useContactStore = defineStore({
                 })
                 .catch((err) => {
                     this.errors = err.response.data.errors
-                    console.log(err.response.data.errors);
                 })
 
 

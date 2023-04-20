@@ -20,16 +20,13 @@ function setIsOpen(value) {
   isOpen.value = value;
 }
 
-let status = ContactStore.status;
 
 
 
-watch(
-  () => ContactStore.status,
-  (newValue, oldValue) => {
+watch(() => ContactStore.status, (newValue, oldValue) => {
     if (newValue) {
       setIsOpen(false);
-      console.log(isOpen.value);
+     
     }
   }
 )
@@ -204,5 +201,9 @@ watch(
         </div>
       </div>
     </Dialog>
+   
   </TransitionRoot>
+ <AlertSuccess v-if="ContactStore.toast"></AlertSuccess>
+  
+  
 </template>
