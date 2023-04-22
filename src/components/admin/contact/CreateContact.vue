@@ -1,7 +1,7 @@
 <script setup>
 import AlertSuccess from "../../attribute/AlertSuccess.vue";
-import { useContactStore } from "@/stores/ContactStore.js";
-import { ref, onUpdated, watch  } from "vue";
+import { useContactStore  } from "@/stores/ContactStore.js";
+import { ref, onUpdated, watch , onMounted } from "vue";
 
 import {
   Dialog,
@@ -20,9 +20,6 @@ function setIsOpen(value) {
   isOpen.value = value;
 }
 
-
-
-
 watch(() => ContactStore.status, (newValue, oldValue) => {
     if (newValue) {
       setIsOpen(false);
@@ -30,6 +27,10 @@ watch(() => ContactStore.status, (newValue, oldValue) => {
     }
   }
 )
+
+onMounted(()=>{
+  ContactStore.responibleGet
+})
 
 </script>
 

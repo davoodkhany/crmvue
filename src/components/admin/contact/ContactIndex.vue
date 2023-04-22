@@ -16,8 +16,8 @@
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
       >
         <li
-          v-for="person in people"
-          :key="person.email"
+          v-for="person in ContactStore.contacts"
+          :key="person.id"
           class="col-span-1 bg-white divide-y divide-gray-200 rounded-lg shadow"
         >
           <a href="">
@@ -78,33 +78,17 @@
 </template>
 
 <script setup>
-import Layout from "../layouts/Layout.vue";
 
+import {onMounted} from 'vue'
+import Layout from "../layouts/Layout.vue";
 import CreateContact from "./CreateContact.vue";
 import { useContactStore } from "@/stores/ContactStore.js";
 const ContactStore = useContactStore();
 
+onMounted(() => {
+  ContactStore.getContact;
+});
+
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/vue/20/solid";
-const people = [
-  {
-    name: "داود خانی",
-    title: "Regional Paradigm Technician",
-    role: "داود خانی",
-    email: "janecooper@example.com",
-    telephone: "+1-202-555-0170",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
-  {
-    name: "داود خانی",
-    title: "Regional Paradigm Technician",
-    role: "داود خانی",
-    email: "janecooper@example.com",
-    telephone: "+1-202-555-0170",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60",
-  },
 
-
-];
 </script>

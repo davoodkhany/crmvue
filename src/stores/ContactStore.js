@@ -1,44 +1,49 @@
 import { defineStore } from 'pinia'
+
 import axios from '@/plugins/axios'
+
 import { router } from '@/router/index';
+
 import { useRegisterUser } from '../stores/RegisterUserStore.js'
 
 export const useContactStore = defineStore({
-
-    id: 'contact',
-    state: () => ({
-        name: '',
-        family: '',
-        email: '',
-        mobile: '',
-        responsible: '',
-        errors: '',
-        liable: [],
-        status: false,
-        toast: false
-
-    }),
-
+    id: 'ContactStore',
+    state: () => {
+        return {
+            name: '',
+            family: '',
+            email: '',
+            mobile: '',
+            responsible: '',
+            errors: '',
+            liable: [],
+            status: false,
+            toast: false,
+            contacts: ''
+        }
+    },
     getters: {
         async responibleGet() {
             const getUser = useRegisterUser();
-            axios.post('/get-user-responible', { 'user': getUser.user })
+            await axios.post('/get-user-responible', { 'user': getUser.user })
                 .then((res) => {
-
                     this.liable = res.data.users
                 })
                 .catch((err) => {
                     console.log('EROOR');
                 })
         },
-
+        async getContact() {
+            await axios.get('/contact')
+                .then((res) => {
+                    this.contacts = res.data.contacts
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
     },
     actions: {
-
-        ChangeStatus() {
-            this.status = false
-        },
-
         createContact() {
             const formData = {
                 name: this.name,
@@ -47,9 +52,6 @@ export const useContactStore = defineStore({
                 mobile: this.mobile,
                 responsible: this.responsible,
                 token: this.token,
-
-
-
             }
             axios.post('/contact', formData)
                 .then((res) => {
@@ -70,8 +72,7 @@ export const useContactStore = defineStore({
                 .catch((err) => {
                     this.errors = err.response.data.errors
                 })
-
-
         }
-    }
+    },
+
 })
