@@ -2,10 +2,10 @@
   <div class="min-h-full">
     <Disclosure
       as="nav"
-      class="border-b border-gray-200 bg-Neutral-150"
+      class="border-b border-gray-200 bg-white"
       v-slot="{ open }"
     >
-      <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+      <div class="px-4 mx-auto max-w-10xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
           <div class="flex">
             <div class="flex items-center flex-shrink-0">
@@ -86,7 +86,7 @@
               >
             </div>
           </div>
-          <div class="hidden Neutral sm:ml-6 sm:flex sm:items-center bg-Neutral-150">
+          <div class="hidden Neutral sm:flex sm:items-center bg-Neutral-150">
             <button
               type="button"
               class="p-1 text-gray-400 rounded-full bg-Neutral-150 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
@@ -96,7 +96,7 @@
             </button>
 
             <!-- Profile dropdown -->
-            <Menu as="div" class="relative ml-3">
+            <Menu as="div" class="relative">
               <div>
                 <MenuButton
                   class="flex items-center max-w-xs text-sm rounded-full bg-Neutral-150 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

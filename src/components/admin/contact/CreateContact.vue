@@ -1,7 +1,10 @@
 <script setup>
+
 import AlertSuccess from "../../attribute/AlertSuccess.vue";
+
 import { useContactStore  } from "@/stores/ContactStore.js";
-import { ref, onUpdated, watch , onMounted } from "vue";
+
+import { ref, onUpdated, watch , onMounted , onBeforeUpdate  } from "vue";
 
 import {
   Dialog,
@@ -14,6 +17,7 @@ import {
 import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/vue/24/outline";
 
 const ContactStore = useContactStore();
+
 const isOpen = ref(false);
 
 function setIsOpen(value) {
@@ -38,7 +42,7 @@ onMounted(()=>{
   <button
     type="button"
     @click="isOpen = true"
-    class="inline-flex items-center px-3 py-2 text-sm font-semibold text-white bg-indigo-600 rounded-md shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    class="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-tones-700 rounded-md shadow-sm hover:bg-tones-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tones-600"
   >
     افزودن شخص
   </button>
@@ -176,7 +180,6 @@ onMounted(()=>{
                       >{{ ContactStore.errors.responsible[0] }}</span
                     >
                   </div>
-
                   <div
                     class="flex justify-between mt-5 sm:mt-4 sm:flex sm:flex-row-reverse"
                   >
@@ -205,6 +208,8 @@ onMounted(()=>{
    
   </TransitionRoot>
  <AlertSuccess v-if="ContactStore.toast"></AlertSuccess>
+  
+
   
   
 </template>

@@ -8,16 +8,18 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                Neutral: {
-                    150: '#EEEEEE',
-                    350: '#E4E5E5'
-                },
-                Yellow: {
-                    500: '#EAB543'
-                },
-                Cyan: {
-                    150: '#BAE5E5'
-                },
+                tones: {
+                    50: '#d8d5fb',
+                    100: '#e8e7fd',
+                    200: '#d8d5fb',
+                    300: '#b7b1f7',
+                    400: '#a69ff5',
+                    500: '#958ef4',
+                    600: '#857cf2',
+                    700: '#746af0',
+                    800: '#6358ee',
+                    900: '#5346ec',
+                }
             }
 
 

@@ -19,12 +19,14 @@ export const useContactStore = defineStore({
             liable: [],
             status: false,
             toast: false,
-            contacts: ''
+            contacts: '',
+            userLogin: ''
         }
     },
     getters: {
         async responibleGet() {
             const getUser = useRegisterUser();
+            this.userLogin = getUser.user.first_name + ' ' + getUser.user.last_name
             await axios.post('/get-user-responible', { 'user': getUser.user })
                 .then((res) => {
                     this.liable = res.data.users
@@ -44,7 +46,7 @@ export const useContactStore = defineStore({
         }
     },
     actions: {
-        createContact() {
+        async createContact() {
             const formData = {
                 name: this.name,
                 family: this.family,
@@ -53,10 +55,12 @@ export const useContactStore = defineStore({
                 responsible: this.responsible,
                 token: this.token,
             }
-            axios.post('/contact', formData)
+            await axios.post('/contact', formData)
                 .then((res) => {
                     this.status = true
                     this.toast = true
+                    this.contacts = res.data.contacts_all
+                    console.log(this.contacts);
                     if (this.status == true) {
                         setTimeout(() => {
                             this.name = '',
@@ -66,6 +70,8 @@ export const useContactStore = defineStore({
                                 this.responsible = '',
                                 this.errors = ''
                         }, 1000)
+
+
                     }
 
                 })
