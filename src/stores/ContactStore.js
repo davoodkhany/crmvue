@@ -20,7 +20,8 @@ export const useContactStore = defineStore({
             status: false,
             toast: false,
             contacts: '',
-            userLogin: ''
+            userLogin: '',
+            contacts_all: '',
         }
     },
     getters: {
@@ -39,6 +40,7 @@ export const useContactStore = defineStore({
             await axios.get('/contact')
                 .then((res) => {
                     this.contacts = res.data.contacts
+                    this.contacts_all = res.data.contacts_all
                 })
                 .catch((err) => {
                     console.log(err);

@@ -10,7 +10,7 @@
     <main>
       <div class="mx-auto mt-1 max-w-12xl sm:px-6 lg:px-8">
         <!-- Replace with your content -->
-        <div class="shadow-md rounded-md bg-white p-6">
+        <div class="shadow-md rounded-md bg-white pb-6 px-6">
           <slot> </slot>
         </div>
         <!-- /End replace -->
