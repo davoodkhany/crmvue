@@ -3,21 +3,30 @@
     <template v-slot:header>
       <div class="flex justify-between"></div>
     </template>
-    <!-- <div>
-        <CreateContact />
-      </div> -->
+    <div>
+      <CreateContact />
+    </div>
     <div>
       <TabGroup>
-        <TabList class="mb-4">
-          <Tab> اشخاص من </Tab>
-          <Tab>همه</Tab>
+        <TabList
+          class="mb-4 border-b border-gray-200 w-fit dark:border-gray-700"
+        >
+          <Tab
+            class="inline-block p-4 border-b-2 outline-none focus:outline-none aria-selected:border-tones-900"  role="tab"
+          >
+          <div data-tabs-target="tab">اشخاص من ({{  ContactStore.contacts_length    }})</div>
+          </Tab>
+          <Tab
+            class="inline-block p-4 border-b-2 outline-none focus:outline-none aria-selected:border-tones-900"
+          >
+             همه ({{ ContactStore.contacts_all_length }})
+          </Tab>
         </TabList>
         <TabPanels>
-          
           <TabPanel>
             <ul
               role="list"
-              class="grid gap-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 mt-6"
+              class="grid gap-6 mt-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2"
             >
               <li
                 v-for="person in ContactStore.contacts"
@@ -31,7 +40,7 @@
                     <div class="flex-1 truncate">
                       <div class="flex items-center space-x-3">
                         <h3
-                          class="text-sm font-medium text-gray-900 truncate ml-2"
+                          class="ml-2 text-sm font-medium text-gray-900 truncate"
                         >
                           {{ person.name }}
                         </h3>
@@ -47,7 +56,7 @@
                     />
                   </div>
                   <div class="px-3 my-8">
-                    <span class="text-xs hidden hover:grid">{{
+                    <span class="hidden text-xs hover:grid">{{
                       person.mobile
                     }}</span>
                   </div>
@@ -79,13 +88,11 @@
                 </a>
               </li>
             </ul>
-
-
           </TabPanel>
-                    <TabPanel>
+          <TabPanel>
             <ul
               role="list"
-              class="grid gap-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 mt-6"
+              class="grid gap-6 mt-6 lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2"
             >
               <li
                 v-for="person in ContactStore.contacts_all"
@@ -99,7 +106,7 @@
                     <div class="flex-1 truncate">
                       <div class="flex items-center space-x-3">
                         <h3
-                          class="text-sm font-medium text-gray-900 truncate ml-2"
+                          class="ml-2 text-sm font-medium text-gray-900 truncate"
                         >
                           {{ person.name }}
                         </h3>
@@ -115,7 +122,7 @@
                     />
                   </div>
                   <div class="px-3 my-8">
-                    <span class="text-xs hidden hover:grid">{{
+                    <span class="hidden text-xs hover:grid">{{
                       person.mobile
                     }}</span>
                   </div>
@@ -147,8 +154,6 @@
                 </a>
               </li>
             </ul>
-
-
           </TabPanel>
         </TabPanels>
       </TabGroup>
@@ -157,11 +162,16 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, onUpdated, computed } from "vue";
+
 import { TabGroup, TabList, Tab, TabPanels, TabPanel } from "@headlessui/vue";
+
 import Layout from "../layouts/Layout.vue";
+
 import CreateContact from "./CreateContact.vue";
+
 import { useContactStore } from "@/stores/ContactStore.js";
+
 import { PhoneIcon } from "@heroicons/vue/20/solid";
 
 const ContactStore = useContactStore();
@@ -169,6 +179,4 @@ const ContactStore = useContactStore();
 onMounted(() => {
   ContactStore.getContact;
 });
-console.log(ContactStore.contacts_all);
-console.log(ContactStore.contacts);
 </script>

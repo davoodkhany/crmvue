@@ -22,6 +22,8 @@ export const useContactStore = defineStore({
             contacts: '',
             userLogin: '',
             contacts_all: '',
+            contacts_length: '',
+            contacts_all_length: '',
         }
     },
     getters: {
@@ -41,6 +43,8 @@ export const useContactStore = defineStore({
                 .then((res) => {
                     this.contacts = res.data.contacts
                     this.contacts_all = res.data.contacts_all
+                    this.contacts_length = this.contacts.length
+                    this.contacts_all_length = this.contacts_all.length
                 })
                 .catch((err) => {
                     console.log(err);
